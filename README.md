@@ -39,7 +39,7 @@ A comprehensive environmental monitoring system using STM32 microcontroller that
 2. **Clone/Download Project**
    ```bash
    git clone <your-repository-url>
-   cd bme280-sd-logger
+   cd BME280Sensor
    ```
 
 3. **Import Project into STM32CubeIDE**
@@ -96,7 +96,6 @@ The project uses the following libraries (included in the project):
 |-----|------------|
 | 3.3V | All module VCC pins |
 | GND  | All module GND pins |
-| 5V   | Not used (all modules are 3.3V) |
 
 ### Wiring Diagram
 
@@ -125,13 +124,7 @@ STM32F4xx Development Board
 
 ### Hardware Notes
 
-1. **Pull-up Resistors**: I2C lines (SCL, SDA) require 4.7kΩ pull-up resistors to 3.3V (usually built into development boards)
-
-2. **SD Card Compatibility**: Use high-quality SD cards (Class 10 recommended) formatted as FAT32
-
-3. **Power Consumption**: Total system consumption approximately 50-100mA depending on measurement frequency
-
-4. **Voltage Levels**: All connections are 3.3V compatible - do not connect 5V signals
+1. **Voltage Levels**: All connections are 3.3V compatible - do not connect 5V signals
 
 ## Configuration
 
@@ -168,10 +161,9 @@ Timestamp,Temperature(C),Humidity(%),Pressure(hPa)
 ## Usage
 
 1. **Hardware Setup**: Connect all components according to the wiring diagram
-2. **Power On**: Connect STM32 to power source
-3. **Monitor via UART**: Connect UART to computer at 115200 baud
-4. **Insert SD Card**: System will automatically create log file
-5. **Data Collection**: System starts logging immediately after initialization
+2. **Monitor via UART**: Connect UART to computer at 115200 baud
+3. **Insert SD Card**: System will automatically create log file
+4. **Data Collection**: System starts logging immediately after initialization
 
 ### UART Output Example
 ```
@@ -197,8 +189,8 @@ Data logged to SD card successfully
 
 **BME280 Not Detected**
 - Verify I2C connections
-- Check pull-up resistors on SCL/SDA
 - Confirm sensor address (0x76/0x77)
+- Disconnect the SDO pin from ground
 
 **No UART Output**
 - Check baud rate (115200)
@@ -210,9 +202,6 @@ Data logged to SD card successfully
 - Verify available space
 - Try reformatting SD card
 
-## License
-
-This project is provided under the MIT License. See LICENSE file for details.
 
 ## Contributing
 
